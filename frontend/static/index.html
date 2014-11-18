@@ -73,15 +73,16 @@
           <ul class="list-group">
             <li class="list-group-item">
               <span class="badge progress-bar-success">5/20</span>
-              World1
+              <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal">Realm 1</button>
+
             </li>
             <li class="list-group-item">
               <span class="badge progress-bar-danger">20/20</span>
-              World2
+              <button type="button" disabled class="btn btn-sm btn-disabled" data-toggle="modal" data-target="#myModal">Realm 2</button>
             </li>
             <li class="list-group-item">
               <span class="badge progress-bar-success">18/20</span>
-              World3
+              <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#myModal">Realm 3</button>
             </li>
           </ul>
           <p><a class="btn btn-default" href="#" role="button">Create new realm &raquo;</a></p>
@@ -93,6 +94,29 @@
         <p>&copy; Team mom_im_studying 2014</p>
       </footer>
     </div> <!-- /container -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Join Minecraft server</h4>
+      </div>
+      <div class="modal-body">
+        <p>Add the following server to your Minecraft client to join the game!</p>
+        <h3>IP Address: <b>123.45.67.890</b></h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
   </body>
 </html>
