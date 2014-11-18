@@ -14,9 +14,6 @@ RUN curl -o minecraft_server.jar https://s3.amazonaws.com/Minecraft.Download/ver
 ADD ./data/eula.txt /minecraft/eula.txt
 
 EXPOSE 25565
-EXPOSE 9090
-
-RUN echo "foo" > index.html
 
 VOLUME ["/minecraft"]
 CMD ["-Xmx1024M", "-Xms1024M"]
