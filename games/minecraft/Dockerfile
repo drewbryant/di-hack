@@ -13,7 +13,7 @@ RUN apt-get install -y curl
 RUN curl -o minecraft_server.jar https://s3.amazonaws.com/Minecraft.Download/versions/1.8/minecraft_server.1.8.jar
 ADD ./data/eula.txt /minecraft/eula.txt
 
-RUN apt-get install -y wget sudo procps vim python python-pip
+RUN apt-get install -y wget sudo procps vim python python-pip inotify-tools
 EXPOSE 25565
 
 

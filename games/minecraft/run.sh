@@ -1,1 +1,1 @@
-docker run -d -i -p 25565:25565 goron/minecraft
+docker run -e MYHOST=`hostname` -d -i -p 25565:25565 goron/minecraft
