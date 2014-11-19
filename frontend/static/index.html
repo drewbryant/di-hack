@@ -10,7 +10,7 @@
     <link href="main.css" rel="stylesheet">
   </head>
 
-  <body ng-controller="MainCtrl">
+  <body ng-controller="MainCtrl as ctrl">
     <nav class="navbar navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -64,7 +64,8 @@
           <ul class="list-group">
             <li class="list-group-item" ng-repeat="(serverId, server) in servers">
               <!-- TODO: switch the badge color if server is full -->
-              <span class="badge progress-bar-success">5/{{serverMaxUsers}}</span>
+              <span class="badge progress-bar-success">
+              {{ctrl.getNumActiveUsers(server)}}/{{serverMaxUsers}}</span>
               <span class="server-name">{{serverId}}:</span>
               <span class="server-address">{{server.ipAddress}}</span>
             </li>
