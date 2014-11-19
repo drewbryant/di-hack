@@ -1,0 +1,15 @@
+body {
+  /* Move down content because we have a fixed navbar that is 50px tall */
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+.navbar-metadata {
+  float: right;
+  margin-top: 15px;
+}
+
+.jumbotron .banner {
+  margin: 0 auto;
+  display: block;
+}

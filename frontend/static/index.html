@@ -11,21 +11,6 @@
   </head>
 
   <body>
-    <style>
-      /* Move down content because we have a fixed navbar that is 50px tall */
-      body {
-        padding-top: 50px;
-        padding-bottom: 20px;
-      }
-      .navbar-metadata {
-        float: right;
-        margin-top: 15px;
-      }
-      .jumbotron .banner {
-        margin: 0 auto;
-        display: block;
-      }
-    </style>
     <nav class="navbar navbar-fixed-top" role="navigation">
       <div class="container">
         <div class="navbar-header">
@@ -67,7 +52,7 @@
             </li>
           </ul>
           <p><a class="btn btn-default" href="#" role="button">Add friend &raquo;</a></p>
-       </div>
+        </div>
         <div class="col-md-4">
           <h2>Realms</h2>
           <ul class="list-group">
@@ -96,25 +81,26 @@
     </div> <!-- /container -->
 
 
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <h4 class="modal-title" id="myModalLabel">Join Minecraft server</h4>
-      </div>
-      <div class="modal-body">
-        <p>Add the following server to your Minecraft client to join the game!</p>
-        <h3>IP Address: <b>123.45.67.890</b></h3>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    <!-- game server details modal -->
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <h4 class="modal-title" id="myModalLabel">Join Minecraft server</h4>
+          </div>
+          <div class="modal-body">
+            <p>Add the following server to your Minecraft client to join the game!</p>
+            <h3>IP Address: <b>123.45.67.890</b></h3>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
+    <!-- jquery needed for bootstrap components: modal -->
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
