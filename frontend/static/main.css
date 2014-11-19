@@ -24,3 +24,11 @@ body {
 .user-game-id {
   color: #aaa;
 }
+
+.server-name {
+  font-weight: bold;
+}
+
+.server-address {
+
+}

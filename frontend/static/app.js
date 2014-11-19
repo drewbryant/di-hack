@@ -8,8 +8,10 @@ app.controller("MainCtrl", function($scope, $firebase) {
   var lobbyFirebase = new Firebase("https://glaring-heat-2029.firebaseio.com/lobby");
 
   $scope.user = $firebase(userFirebase).$asObject();
-  $scope.friends = [];
-  console.log($scope.friends);
+
+  $scope.servers = $firebase(serverFirebase).$asObject();
+
+  $scope.serverMaxUsers = 20; // minecraft constant
 
   // $scope.addFriend = function(name) {
   //   $scope.friends.$add({text: name});
