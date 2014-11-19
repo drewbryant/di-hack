@@ -1,1 +1,1 @@
-docker run -p 25565:25565 goron/minecraft
+docker run -d -i -p 25565:25565 goron/minecraft
