@@ -13,9 +13,19 @@ RUN apt-get install -y curl
 RUN curl -o minecraft_server.jar https://s3.amazonaws.com/Minecraft.Download/versions/1.8/minecraft_server.1.8.jar
 ADD ./data/eula.txt /minecraft/eula.txt
 
+RUN apt-get install -y wget sudo procps vim python python-pip
 EXPOSE 25565
 
+
+RUN pip install requests==1.1.0
+RUN pip install python-firebase
+
+ADD server.py /minecraft/server.py
+
 VOLUME ["/minecraft"]
-CMD ["-Xmx1024M", "-Xms1024M"]
-ENTRYPOINT ["java", "-jar", "minecraft_server.jar", "nogui"]
+RUN mkdir logs
+# background server so we can attach to machine and do more stuff
+CMD nohup python server.py
+#ENTRYPOINT ["python", "server.py"]
+
 
