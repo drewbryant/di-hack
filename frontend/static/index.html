@@ -16,7 +16,13 @@
         <div class="navbar-header">
           <a class="navbar-brand" href="#">DI Games</a>
         </div>
-        <p class="navbar-metadata">Welcome, {{ user.displayName }} [{{user.minecraftUserId}}]</p>
+        <p class="navbar-metadata">
+          <span ng-show="user.online" class="badge progress-bar-success">online</span>
+          Welcome,
+          <span class="user-display-name">{{ user.displayName }}</span>
+          <span class="user-game-id">[{{user.minecraftUserId}}]</span>
+        </p>
+
       </div>
     </nav>
 

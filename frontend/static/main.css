@@ -13,3 +13,10 @@ body {
   margin: 0 auto;
   display: block;
 }
+
+.user-display-name {
+
+}
+.user-game-id {
+  color: #aaa;
+}
