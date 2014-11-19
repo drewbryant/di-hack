@@ -8,6 +8,7 @@ di-hack
 * Bob is offline
 * Mary is online, in lobby
 
+```
 {
 
   "users": {
@@ -41,7 +42,7 @@ di-hack
   "servers": {
     "foo": {
       "ipAddress": "123.45.67.89",
-      "users": {
+      "active": {
         "alice-id": true
       }
     }
@@ -54,5 +55,4 @@ di-hack
   }
 
 }
-
-
+```
