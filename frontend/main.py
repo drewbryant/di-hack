@@ -13,33 +13,32 @@ import servers
 import random
 
 class MainHandler(webapp2.RequestHandler):
-  # @decorator.oauth_aware
+  """Sanity check handler"""
   def get(self):
-    # variables = {
-    #     'url': decorator.authorize_url(),
-    #     'has_credentials': decorator.has_credentials()
-    #     }
-    self.response.write('this is from webapp2 ftw')
+    param = self.request.get('param', default_value="no_value_provided")
+    self.response.write('api routes in webapp2: ' + param)
+
+def is_valid_server_name(name):
+  return True # TODO: alphanumeric with dashes (see the gce regex)
 
 class CreateServerHandler(webapp2.RequestHandler):
-  # @decorator.oauth_aware
+  """Creates a new server instance"""
+  # TODO: this should really be a POST...
   def get(self):
-    print servers.create_instance(
-      'created-via-appengine-%d' % random.randint(0, 100000),
+    server_name = self.request.get('server', default_value='default-server-name')
+    if not is_valid_server_name(server_name):
+      pass # TODO: return an error
+
+    # TODO: validate server name is valid firebase key and compute engine instance name
+    servers.create_instance(
+      server_name,
+      self.request.get('disk', default_value='boot-pool-3'),
       poll=False)
-    self.response.write('success maybe?')
-    # if decorator.has_credentials():
-    #   print servers.create_instance('created_via_appengine', poll=False)
-    #   self.response.write('success maybe?')
-    # else:
-    #   self.response.write('no oauth credentials available!')
+    self.response.write('create request was sent')
 
 routes = [
   ('/api', MainHandler),
   ('/api/create', CreateServerHandler),
-  # (decorator.callback_path, decorator.callback_handler()),
 ]
 
 app = webapp2.WSGIApplication(routes, debug=True)
-
-# NOTE: validate server name is valid firebase key and compute engine instance name

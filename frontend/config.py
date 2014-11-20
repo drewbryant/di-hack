@@ -7,9 +7,7 @@ echo 'commlink online' > index.html
 python -m SimpleHTTPServer 9090 &
 """
 
-disk_name = 'boot-pool-3'
-
-def create_request(instance_name):
+def create_request(instance_name, disk_name):
   return {
     "disks": [
       {

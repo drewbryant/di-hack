@@ -25,7 +25,7 @@ CLIENT_SECRETS = 'client_secrets.json'
 OAUTH2_STORAGE = 'oauth2.dat' # FIXME: will this need to be refreshed??? Might break later
 GCE_SCOPE = 'https://www.googleapis.com/auth/compute'
 
-def create_instance(new_instance_name, poll=False):
+def create_instance(new_instance_name, disk_name, poll=False):
   logging.basicConfig(level=logging.INFO)
 
   parser = argparse.ArgumentParser(
@@ -38,6 +38,9 @@ def create_instance(new_instance_name, poll=False):
 
   # Perform OAuth 2.0 authorization.
   flow = flow_from_clientsecrets(CLIENT_SECRETS, scope=GCE_SCOPE)
+  # FIXME: this will not write out new credentials to oauth2.dat
+  # add a flag/check to test if running locally (can't write to file
+  # on appengine).
   storage = Storage(OAUTH2_STORAGE)
   credentials = storage.get()
 
@@ -67,7 +70,7 @@ def create_instance(new_instance_name, poll=False):
         project_url, DEFAULT_ZONE, DEFAULT_MACHINE_TYPE)
   network_url = '%s/global/networks/%s' % (project_url, DEFAULT_NETWORK)
 
-  request_body = config.create_request(new_instance_name)
+  request_body = config.create_request(new_instance_name, disk_name)
   print 'The request body is:', request_body
   # Create the instance
   request = gce_service.instances().insert(
@@ -107,4 +110,4 @@ def _blocking_call(gce_service, auth_http, response):
   return response
 
 if __name__ == '__main__':
-  print create_instance('rontmpl', poll=True)
+  print create_instance('a-test-instance', poll=True)
