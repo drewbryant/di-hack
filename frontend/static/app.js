@@ -20,5 +20,9 @@ function MainCtrl ($scope, $firebase, $window) {
 }
 
 MainCtrl.prototype.getNumActiveUsers = function (server) {
-  return Object.keys(server.active).length;
+  if (!server.active) {
+    return 0;
+  } else {
+    return Object.keys(server.active).length;
+  }
 }
