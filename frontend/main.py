@@ -9,14 +9,8 @@ import os
 
 import webapp2
 
-CLIENT_SECRETS = os.path.join(os.path.dirname(__file__), 'client_secrets.json')
-
-# TODO: make these compute (not gplus)
-# service = discovery.build("compute", "v1", http=http)
-# decorator = appengine.oauth2decorator_from_clientsecrets(
-#     CLIENT_SECRETS,
-#     scope='https://www.googleapis.com/auth/plus.me',
-#     message='Go get a client_secrets.json via service acct')
+import servers
+import random
 
 class MainHandler(webapp2.RequestHandler):
   # @decorator.oauth_aware
@@ -27,13 +21,25 @@ class MainHandler(webapp2.RequestHandler):
     #     }
     self.response.write('this is from webapp2 ftw')
 
-class another_handler(webapp2.RequestHandler):
+class CreateServerHandler(webapp2.RequestHandler):
+  # @decorator.oauth_aware
   def get(self):
-    self.response.write('another route')
+    print servers.create_instance(
+      'created-via-appengine-%d' % random.randint(0, 100000),
+      poll=False)
+    self.response.write('success maybe?')
+    # if decorator.has_credentials():
+    #   print servers.create_instance('created_via_appengine', poll=False)
+    #   self.response.write('success maybe?')
+    # else:
+    #   self.response.write('no oauth credentials available!')
 
 routes = [
   ('/api', MainHandler),
+  ('/api/create', CreateServerHandler),
   # (decorator.callback_path, decorator.callback_handler()),
 ]
 
 app = webapp2.WSGIApplication(routes, debug=True)
+
+# NOTE: validate server name is valid firebase key and compute engine instance name
