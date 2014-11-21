@@ -54,10 +54,10 @@
           <h2>Login</h2>
           <div class="input-group">
             <input type="text" class="form-control" placeholder="your-user-id-here" ng-model="userId">
-            <!-- <input type="text" class="form-control" placeholder="your-minecraft-id-here" ng-model="newMinecraftUserId">
-            <input type="text" class="form-control" placeholder="your-display-name-here" ng-model="newDisplayName"> -->
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button" ng-click="ctrl.login(userId)">Login &raquo;</button>
+            </span>
           </div>
-          <p><a class="btn btn-default" href="#" role="button" ng-click="ctrl.login(userId)">Login &raquo;</a></p>
         </div>
 
         <div class="col-md-4" ng-if="user.online">
@@ -69,18 +69,6 @@
               {{ friend.displayName }}
               <span class="text-muted">[{{ friend.minecraftUserId}}]</span>
             </li>
-<!--             <li class="list-group-item">
-              <span class="badge progress-bar-success">online</span>
-              London
-            </li>
-            <li class="list-group-item">
-              <span class="badge progress-bar-success">online</span>
-              DJ
-            </li>
-            <li class="list-group-item">
-              <span class="badge">offline</span>
-              Alice
-            </li> -->
           </ul>
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Minecraft ID" ng-model="newFriendMinecraftUserId">
