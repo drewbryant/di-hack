@@ -47,6 +47,8 @@ MainCtrl.prototype.createNewUser = function (userId, minecraftUserId, displayNam
       online: true,
       displayName: displayName,
     });
+  console.info('Created user: ', userId);
+  this.login(userId);
 }
 
 MainCtrl.prototype.login = function (userId) {
@@ -54,6 +56,7 @@ MainCtrl.prototype.login = function (userId) {
   // Create a sync'd object for the user, to drive the UI
   var userRefPath = this._getUserFirebasePath(userId);
   this.userRef = new Firebase(userRefPath);
+  this.userRef.child('online').set(true);
   this.scope.user = this.firebase(this.userRef).$asObject();
 
   // Setup event handlers for friend adds/removes
