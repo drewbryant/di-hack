@@ -41,16 +41,23 @@
         <div class="col-md-4">
           <h2>Play now!</h2>
           <p>Some text here to prompt user to find/add friends or join a game</p>
+          <h2>Create an account</h2>
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="your-user-id-here" ng-model="userId">
+            <input type="text" class="form-control" placeholder="your-minecraft-id-here" ng-model="newMinecraftUserId">
+            <input type="text" class="form-control" placeholder="your-display-name-here" ng-model="newDisplayName">
+          </div>
+          <p><a class="btn btn-default" href="#" role="button" ng-click="ctrl.login(userId)">Create account &raquo;</a></p>
         </div>
 
         <div class="col-md-4" ng-if="!user.online">
           <h2>Login</h2>
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="your-user-id-here" ng-model="newUserId">
-            <input type="text" class="form-control" placeholder="your-minecraft-id-here" ng-model="newMinecraftUserId">
-            <input type="text" class="form-control" placeholder="your-display-name-here" ng-model="newDisplayName">
+            <input type="text" class="form-control" placeholder="your-user-id-here" ng-model="userId">
+            <!-- <input type="text" class="form-control" placeholder="your-minecraft-id-here" ng-model="newMinecraftUserId">
+            <input type="text" class="form-control" placeholder="your-display-name-here" ng-model="newDisplayName"> -->
           </div>
-          <p><a class="btn btn-default" href="#" role="button" ng-click="ctrl.login(newUserId, newMinecraftUserId, newDisplayName)">Login &raquo;</a></p>
+          <p><a class="btn btn-default" href="#" role="button" ng-click="ctrl.login(userId)">Login &raquo;</a></p>
         </div>
 
         <div class="col-md-4" ng-if="user.online">

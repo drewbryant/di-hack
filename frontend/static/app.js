@@ -17,16 +17,14 @@ function MainCtrl ($scope, $firebase, $http) {
   this.scope = $scope;
   this.firebase = $firebase;
 
-  this.login('drew-id', 'the_real_ron_brn', 'Drew'); // FIXME: for debugging
+  // this.login('drew-id', 'the_real_ron_brn', 'Drew'); // FIXME: for debugging
 }
 
 MainCtrl.prototype.addFriend = function (minecraftUserId) {
-  console.log('addFriend()');
   this.userRef
     .child('friends')
     .child(minecraftUserId)
     .set(true);
-  console.log('addFriend() done');
 }
 
 MainCtrl.prototype.getNumActiveUsers = function (server) {
@@ -41,16 +39,18 @@ MainCtrl.prototype._getUserFirebasePath = function (userId) {
   return this.firebaseUrl + '/users/' + userId
 }
 
-MainCtrl.prototype.login = function (userId, minecraftUserId, displayName) {
+MainCtrl.prototype.createNewUser = function (userId, minecraftUserId, displayName) {
   this.allUsersRef // FIXME: hack to auto-login during testing which clears all existing friends
     .child(userId)
     .set({
       minecraftUserId: minecraftUserId,
       online: true,
       displayName: displayName,
-      friends: {'mary-id': true, 'alice-id': true}
-    }); // Note: clears any existing friends due to use of 'set'
+    });
+}
 
+MainCtrl.prototype.login = function (userId) {
+  console.info('logging in the user: ', userId);
   // Create a sync'd object for the user, to drive the UI
   var userRefPath = this._getUserFirebasePath(userId);
   this.userRef = new Firebase(userRefPath);
@@ -63,6 +63,12 @@ MainCtrl.prototype.login = function (userId, minecraftUserId, displayName) {
   // (e.g., if there are already 3 friends, it will be invoked thrice immediately)
   friendsRef.on('child_added', this.handleFriendAdded.bind(this));
   friendsRef.on('child_removed', this.handleFriendRemoved.bind(this));
+}
+
+MainCtrl.prototype.logout = function (userId) {
+  this.userRef.child('online').set(false);
+  this.userRef = null;
+  this.user = null;
 }
 
 MainCtrl.prototype._insertFriend = function (friendUserId) {
@@ -80,12 +86,6 @@ MainCtrl.prototype.handleFriendAdded = function (snapshot) {
 MainCtrl.prototype.handleFriendRemoved = function (snapshot) {
   console.log('friend removed: ', snapshot.key(), snapshot.val());
   delete this.scope.friends[snapshot.key()];
-}
-
-MainCtrl.prototype.logout = function (userId) {
-  this.userRef.child('online').set(false);
-  this.userRef = null;
-  this.user = null;
 }
 
 MainCtrl.prototype.createServer = function (serverName, diskName) {
