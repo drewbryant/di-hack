@@ -42,6 +42,7 @@
           <h2>Play now!</h2>
           <p>Some text here to prompt user to find/add friends or join a game</p>
         </div>
+        <!-- TODO: hook up to firebase
         <div class="col-md-4">
           <h2>Friends</h2>
           <ul class="list-group">
@@ -60,6 +61,7 @@
           </ul>
           <p><a class="btn btn-default" href="#" role="button">Add friend &raquo;</a></p>
         </div>
+        -->
         <div class="col-md-4">
           <h2>Servers</h2>
           <ul class="list-group">
@@ -88,10 +90,18 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-            <h4 class="modal-title" id="create-game-server-modal-label">Create new Minecraft server</h4>
+            <h4 class="modal-title" id="create-game-server-modal-label">Create a new Minecraft server</h4>
           </div>
           <div class="modal-body">
-            <p>TODO: add form here for creating a new server instance</p>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="your-disk-name" ng-model="diskName">
+            </div>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="your-server-name" ng-model="serverName">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" ng-click="ctrl.createServer(serverName, diskName)">Create</button>
+              </span>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -1,8 +1,15 @@
 STARTUP_SCRIPT = """\
+curl http://metadata/computeMetadata/v1beta1/instance/service-accounts/default/token
+
+chgrp docker /var/run/docker.sock
+/usr/local/bin/gcloud preview docker pull container.cloud.google.com/_b_dihack_studying/minecraft
+
+cat /root/.dockercfg
+
 sh /home/rbraunstein/run_docker &
 
 # Sanity test for the startup script execution
-mkdir /tmp/zomg/index.html && cd /tmp/zomg
+mkdir /tmp/zomg && cd /tmp/zomg
 echo 'commlink online' > index.html
 python -m SimpleHTTPServer 9090 &
 """
